@@ -4,8 +4,11 @@
   "description": "List down all the books you want to read",
   "main": "server.js",
   "scripts": {
+    "client-install" : "npm install --prefix View",
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix View",
+    "dev" : "concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [
     "node",
