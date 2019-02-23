@@ -5,10 +5,13 @@ let routes = express.Router();
 
 // Get Request
 routes.get("/" , (req, res) => {
-    books.find({}, (err , data) => {
-        if(err){ throw err };
-        res.send(data)
-    })
+    books.find()
+        .then((data) => {
+            res.json(data)
+        })
+        .catch((err) => {
+            console.log("ERROR! " + err)
+        })
 })
 
 // Post Request
@@ -26,7 +29,7 @@ routes.post("/" , (req, res) => {
 routes.delete("/:id" , (req ,res) => {
     books.findOneAndDelete({ _id : req.params.id})
         .then((data) => {
-            res.send(data)
+            res.json(data)
         })
         .catch((err) => {
             res.send(err)
