@@ -5,6 +5,10 @@ let authorSchema = new mongoose.Schema({
     name : {
         type: String,
         required: true
+    },
+    age : {
+        type : Number,
+        required : true
     }
 })
 
@@ -18,7 +22,7 @@ let bookSchema = new mongoose.Schema({
 })
 
 // Model / Collections
-let books = new mongoose.model("books" , bookScheme);
+let books = mongoose.model("books" , bookSchema);
 
 
 module.exports = books;

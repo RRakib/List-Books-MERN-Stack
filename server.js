@@ -1,11 +1,12 @@
 let express = require("express");
 let mongoose = require("mongoose");
 let mongoURI = require("./Config/keys");
+let routeController = require("./Controller/routeController");
 
 let app = express();
 
 // Body Parser
-app.set(express.urlencoded({ extended : false}));
+app.use(express.urlencoded({ extended : false}));
 app.use(express.json());
 
 // Connection To MongoDB Atlas
@@ -18,9 +19,8 @@ mongoose.connect(mongoURI.mongoURI , {useNewUrlParser : true})
     })
 
 
-app.get("/" , (req, res) => {
-    res.send("Hello")
-})
+// Setting Routes
+app.use("/api/books" , routeController);
 
 
 // Server Port
