@@ -6,6 +6,7 @@ class Todo extends Component {
     constructor(props){
         super(props);
         this.state = {
+            books : [],
             book : "",
             author : "",
             age : ""
@@ -17,13 +18,20 @@ class Todo extends Component {
         this.setState({
             [name] : value
         })
-        console.log(this.state)
     }
     handleSubmit = (e) => {
         e.preventDefault();
+        let bookArray = {
+            book : this.state.book,
+        }
+        this.setState({
+            ...this.state,
+            books : [bookArray, ...this.state.books]
+        })
     }
 
     render(){
+        console.log(this.state.books)
         return(
             <div>
                 <Form 
@@ -32,6 +40,7 @@ class Todo extends Component {
                     book = {this.state.book}
                     author = {this.state.author}
                     age = {this.state.age}
+                    books = {this.state.books}
                 />
             </div>
         )

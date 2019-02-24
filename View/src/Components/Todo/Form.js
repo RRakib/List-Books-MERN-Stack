@@ -2,6 +2,13 @@ import React from "react";
 
 
 const Form = (props) => {
+    let books = props.books.map((items) => {
+        return(
+            <div className="Todo-list">
+                <p>{items.book}</p>
+            </div>
+        )
+    })
     return(
         <div className="Todo">
             <form onSubmit={props.handleSubmit}>
@@ -29,6 +36,7 @@ const Form = (props) => {
                 <br />
                 <button> Add </button>
             </form>
+            {books}
         </div>
     )
 }

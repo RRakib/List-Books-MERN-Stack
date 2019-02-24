@@ -1,7 +1,7 @@
 .Todo{
     width: 45%;
     margin: auto;
-    background: #eee;
+    background: #F5E1E2;
     overflow-x: hidden;
     border: 1px solid #BD3F33;
 }
@@ -20,4 +20,17 @@
     color: #f1f1f1;
     font-family: "Kaushan Script";
     border: none;
+}
+.Todo .Todo-list{
+    text-align: left;
+    background: #E6F3E7;
+    color: #333;
+    border-left: 8px solid #BD3F33;
+    padding: 20px 10px;
+    margin: 8px 0;
+    font-size: 18px;
+}
+.Todo .Todo-list p{
+    padding: 0;
+    margin: 0;
 }
