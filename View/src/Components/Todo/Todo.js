@@ -17,7 +17,7 @@ class Todo extends Component {
         const { name , value } = e.target;
         this.setState({
             [name] : value
-        })
+        });
     }
     handleSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +27,7 @@ class Todo extends Component {
         this.setState({
             ...this.state,
             books : [bookArray, ...this.state.books]
-        })
+        });
     }
 
     render(){
