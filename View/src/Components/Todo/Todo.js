@@ -29,6 +29,24 @@ class Todo extends Component {
             books : [bookArray, ...this.state.books]
         });
     }
+    componentDidMount = () =>{
+        fetch("http://localhost:5000/api/books/" , {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((err) => {
+                console.log("OPPS!!! "+ err)
+            })
+
+    }
 
     render(){
         console.log(this.state.books)
