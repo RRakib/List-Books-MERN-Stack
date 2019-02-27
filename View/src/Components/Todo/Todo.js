@@ -8,7 +8,6 @@ class Todo extends Component {
     constructor(props){
         super(props);
         this.state = {
-            books : [],
             book : "",
             author : "",
             age : ""
@@ -26,12 +25,10 @@ class Todo extends Component {
         let bookArray = {
             book : this.state.book,
         }
-        this.setState({
-            ...this.state,
-            books : [bookArray, ...this.state.books]
-        });
-        this.props.addBooks(this.state.books)
+        this.props.addBook(bookArray)
+
     }
+
     // componentDidMount = () =>{
     //     fetch("http://localhost:5000/api/books/" , {
     //         method: "GET",
@@ -52,7 +49,6 @@ class Todo extends Component {
     // }
 
     render(){
-        console.log(this.state.books)
         return(
             <div>
                 <Form 
@@ -68,12 +64,12 @@ class Todo extends Component {
     }
 }
 
-const mapStateToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return{
-    addBooks : (books) => dispatch(addBooks(books))
+    addBook : (books) => dispatch(addBooks(books))
     }
 }
 
 
 
-export default connect(mapStateToProps)(Todo);
+export default connect(null , mapDispatchToProps)(Todo);

@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
+import { getBooks } from "../../Actions/bookActions"
 
 
 const Form = (props) => {
 
     const books = props.books.map((items) => {
         return(
-        <div className="Todo-list" key={items.id}>
-            <p>{items.Book}</p>
+        <div className="Todo-list">
+            <p>{items.book}</p>
         </div>
         )
     })
@@ -47,10 +48,10 @@ const Form = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
     return{
-        books : state.bookReducer
+        getBooks : () => dispatch(getBooks())
     }
 }
 
-export default connect(mapStateToProps)(Form);
+export default connect(mapDispatchToProps)(Form);

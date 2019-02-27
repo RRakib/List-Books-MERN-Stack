@@ -1,15 +1,18 @@
 const initState = [
     {
-        id : 1,
-        Book : "Deyal"
+        book : "Deyal"
     },
     {
-        id : 2,
-        Book : "Himu"
-        }
+        book : "Himu"
+    }
 ]
 
 let bookReducer = (state = initState , action) => {
-    return state
+    switch(action.type){
+        case "ADD_BOOKS" :
+            return state = [...state , action.books]
+        default :
+            return state
+    }
 }
 export default bookReducer;
