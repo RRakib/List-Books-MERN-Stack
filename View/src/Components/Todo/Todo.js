@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { addBooks } from "../../Actions/bookActions"
+import { deleteBooks } from "../../Actions/bookActions"
 import { connect } from "react-redux"
 import Form from "./Form"
 import "./Todo.css"
@@ -19,10 +20,14 @@ class Todo extends Component {
             [name] : value
         });
     }
+    handleClick = (id) => {
+        this.props.deleteBook(id)
+    }
     handleSubmit = (e) => {
         e.preventDefault();
         let bookArray = {
-            book : this.state.book,
+            id : this.state.id,
+            book : this.state.book
         }
         this.props.addBook(bookArray)
 
@@ -53,10 +58,9 @@ class Todo extends Component {
                 <Form 
                     handleChange = {this.handleChange}
                     handleSubmit = {this.handleSubmit}
-                    // book = {this.state.book}
-                    // author = {this.state.author}
-                    // age = {this.state.age}
-                    // books = {this.state.books}
+                    handleClick = {this.handleClick}
+                    book = {this.state.book}
+                    id = {this.state.id}
                 />
             </div>
         )
@@ -65,7 +69,9 @@ class Todo extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-    addBook : (books) => dispatch(addBooks(books))
+    addBook : (books) => dispatch(addBooks(books)),
+    deleteBook : (books) => dispatch(deleteBooks(books))
+
     }
 }
 

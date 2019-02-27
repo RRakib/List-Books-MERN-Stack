@@ -7,7 +7,7 @@ const Form = (props) => {
     const books = props.books.map((items) => {
         return(
         <div className="Todo-list" key={items.id}>
-            <p>{items.book}</p>
+            <p onClick={props.handleClick.bind(this , items.id)}> {items.book}</p>
         </div>
         )
     })
@@ -41,6 +41,7 @@ const Form = (props) => {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return{
         books : state.bookReducer
     }
