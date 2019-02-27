@@ -1,13 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getBooks } from "../../Actions/bookActions"
 
 
 const Form = (props) => {
 
     const books = props.books.map((items) => {
         return(
-        <div className="Todo-list">
+        <div className="Todo-list" key={items.id}>
             <p>{items.book}</p>
         </div>
         )
@@ -25,17 +24,10 @@ const Form = (props) => {
                 /> 
                 <input 
                     type="text"
-                    name="author"
-                    placeholder="Please enter the author's name..."
+                    name="id"
+                    placeholder="Please enter the id..."
                     onChange={props.handleChange}
-                    value={props.author}
-                /> 
-                <input 
-                    type="text"
-                    name="age"
-                    placeholder="Please enter author's age..."
-                    onChange={props.handleChange}
-                    value={props.age}
+                    value={props.id}
                 /> 
                 <br />
                 <button> Add </button>
@@ -48,10 +40,10 @@ const Form = (props) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
     return{
-        getBooks : () => dispatch(getBooks())
+        books : state.bookReducer
     }
 }
 
-export default connect(mapDispatchToProps)(Form);
+export default connect(mapStateToProps)(Form);

@@ -9,8 +9,7 @@ class Todo extends Component {
         super(props);
         this.state = {
             book : "",
-            author : "",
-            age : ""
+            id : "",
         }
     }
 

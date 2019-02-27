@@ -1,7 +1,7 @@
-export const getBooks = () => {
+export const deleteBooks = () => {
     return (dispatch , getState) => {
         dispatch({
-            type : "GET_BOOKS",
+            type : "DELETE_BOOKS",
         })
     }
 }
