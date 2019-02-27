@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import { addBooks } from "../../Actions/bookActions"
+import { connect } from "react-redux"
 import Form from "./Form"
 import "./Todo.css"
 
@@ -28,25 +30,26 @@ class Todo extends Component {
             ...this.state,
             books : [bookArray, ...this.state.books]
         });
+        this.props.addBooks(this.state.books)
     }
-    componentDidMount = () =>{
-        fetch("http://localhost:5000/api/books/" , {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                console.log(data)
-            })
-            .catch((err) => {
-                console.log("OPPS!!! "+ err)
-            })
+    // componentDidMount = () =>{
+    //     fetch("http://localhost:5000/api/books/" , {
+    //         method: "GET",
+    //         headers: {
+    //           "Content-Type": "application/json"
+    //         }
+    //       })
+    //         .then((res) => {
+    //             return res.json();
+    //         })
+    //         .then((data) => {
+    //             console.log(data)
+    //         })
+    //         .catch((err) => {
+    //             console.log("OPPS!!! "+ err)
+    //         })
 
-    }
+    // }
 
     render(){
         console.log(this.state.books)
@@ -55,14 +58,22 @@ class Todo extends Component {
                 <Form 
                     handleChange = {this.handleChange}
                     handleSubmit = {this.handleSubmit}
-                    book = {this.state.book}
-                    author = {this.state.author}
-                    age = {this.state.age}
-                    books = {this.state.books}
+                    // book = {this.state.book}
+                    // author = {this.state.author}
+                    // age = {this.state.age}
+                    // books = {this.state.books}
                 />
             </div>
         )
     }
 }
 
-export default Todo;
+const mapStateToProps = (dispatch) => {
+    return{
+    addBooks : (books) => dispatch(addBooks(books))
+    }
+}
+
+
+
+export default connect(mapStateToProps)(Todo);

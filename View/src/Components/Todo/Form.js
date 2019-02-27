@@ -1,14 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
 
 
 const Form = (props) => {
-    let books = props.books.map((items) => {
+
+    const books = props.books.map((items) => {
         return(
-            <div className="Todo-list">
-                <p>{items.book}</p>
-            </div>
+        <div className="Todo-list" key={items.id}>
+            <p>{items.Book}</p>
+        </div>
         )
     })
+
     return(
         <div className="Todo">
             <form onSubmit={props.handleSubmit}>
@@ -36,9 +39,18 @@ const Form = (props) => {
                 <br />
                 <button> Add </button>
             </form>
+
             {books}
+
+
         </div>
     )
 }
 
-export default Form;
+const mapStateToProps = (state) => {
+    return{
+        books : state.bookReducer
+    }
+}
+
+export default connect(mapStateToProps)(Form);
