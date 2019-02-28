@@ -1,3 +1,12 @@
+export const getBooks = (books) => {
+    console.log(books)
+    return (dispatch , getState) => {
+        dispatch({
+            type : "GET_BOOKS",
+            books
+        })
+    }
+}
 export const deleteBooks = (id) => {
     return (dispatch , getState) => {
         dispatch({

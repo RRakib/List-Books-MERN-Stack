@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { addBooks } from "../../Actions/bookActions"
 import { deleteBooks } from "../../Actions/bookActions"
+import { getBooks } from "../../Actions/bookActions"
 import { connect } from "react-redux"
 import Form from "./Form"
 import "./Todo.css"
@@ -33,24 +34,19 @@ class Todo extends Component {
 
     }
 
-    // componentDidMount = () =>{
-    //     fetch("http://localhost:5000/api/books/" , {
-    //         method: "GET",
-    //         headers: {
-    //           "Content-Type": "application/json"
-    //         }
-    //       })
-    //         .then((res) => {
-    //             return res.json();
-    //         })
-    //         .then((data) => {
-    //             console.log(data)
-    //         })
-    //         .catch((err) => {
-    //             console.log("OPPS!!! "+ err)
-    //         })
+    componentDidMount = () =>{
+        fetch("/api/books/")
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                data.map((items) => this.props.getBook(items))
+            })
+            .catch((err) => {
+                console.log("OPPS!!! "+ err)
+            })
 
-    // }
+    }
 
     render(){
         return(
@@ -70,8 +66,8 @@ class Todo extends Component {
 const mapDispatchToProps = (dispatch) => {
     return{
     addBook : (books) => dispatch(addBooks(books)),
-    deleteBook : (books) => dispatch(deleteBooks(books))
-
+    deleteBook : (books) => dispatch(deleteBooks(books)),
+    getBook : (books) => dispatch(getBooks(books))
     }
 }
 

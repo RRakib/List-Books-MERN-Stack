@@ -6,8 +6,8 @@ const Form = (props) => {
 
     const books = props.books.map((items) => {
         return(
-        <div className="Todo-list" key={items.id}>
-            <p onClick={props.handleClick.bind(this , items.id)}> {items.book}</p>
+        <div className="Todo-list" key={items._id}>
+            <p onClick={props.handleClick.bind(this , items._id)}> {items.book}</p>
         </div>
         )
     })
