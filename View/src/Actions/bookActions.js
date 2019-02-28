@@ -7,13 +7,18 @@ export const getBooks = (books) => {
         })
     }
 }
-export const deleteBooks = (id) => {
-    return (dispatch , getState) => {
-        dispatch({
-            type : "DELETE_BOOKS",
-            id
-        })
-    }
+export const deleteBooks = (id) => (dispatch) => {
+    fetch("/api/books/" + id , {
+        method : "DELETE",
+        headers : {
+            "Content-Type" : "application/json"
+        }
+    })
+    .then((res) => {return res.json()})
+    .then(data => dispatch({
+        type : "DELETE_BOOKS",
+        id
+    }))
 }
 export const addBooks = (books) => (dispatch) => {
     fetch("/api/books/" , {

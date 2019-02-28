@@ -8,7 +8,8 @@ let bookReducer = (state = initState , action) => {
                 _id : action.books._id,
                 book : action.books.book
             }]
-            state = [...books , ...state ]
+            state = [...books , ...state ];
+            console.log(state)
             return state
         case "ADD_BOOKS" :
             return state = [...state , action.books]

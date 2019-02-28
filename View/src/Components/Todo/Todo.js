@@ -11,7 +11,7 @@ class Todo extends Component {
         super(props);
         this.state = {
             book : "",
-            _id : "",
+            bol : false
         }
     }
 
@@ -39,7 +39,10 @@ class Todo extends Component {
                 return res.json();
             })
             .then((data) => {
-                data.map((items) => this.props.getBook(items))
+                data.map((items) => this.props.getBook(items));
+                this.setState({
+                    bol : true
+                })
             })
             .catch((err) => {
                 console.log("OPPS!!! "+ err)
@@ -55,7 +58,7 @@ class Todo extends Component {
                     handleSubmit = {this.handleSubmit}
                     handleClick = {this.handleClick}
                     book = {this.state.book}
-                    id = {this.state.id}
+                    bol = {this.state.bol}
                 />
             </div>
         )

@@ -5,13 +5,23 @@ import { connect } from "react-redux";
 const Form = (props) => {
 
     const books = props.books.map((items) => {
-        return(
-        <div className="Todo-list" key={items._id}>
-            <p onClick={props.handleClick.bind(this , items._id)}> {items.book}</p>
-        </div>
-        )
+        if(props.bol === false){
+            return(
+                <div className="Todo-list" key={items._id}>
+                    <h2>Loading</h2>
+                </div>
+                )
+        }
+        else if(props.bol === true){
+            return(
+                <div className="Todo-list" key={items._id}>
+                    <p onClick={props.handleClick.bind(this , items._id)}> {items.book}</p>
+                </div>
+                )
+        }
+        
     })
-
+    console.log(props.bol)
     return(
         <div className="Todo">
             <form onSubmit={props.handleSubmit}>
@@ -21,13 +31,6 @@ const Form = (props) => {
                     placeholder="Please enter the name of book..."
                     onChange={props.handleChange}
                     value={props.book}
-                /> 
-                <input 
-                    type="text"
-                    name="id"
-                    placeholder="Please enter the id..."
-                    onChange={props.handleChange}
-                    value={props.id}
                 /> 
                 <br />
                 <button> Add </button>
