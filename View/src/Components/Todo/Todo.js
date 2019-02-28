@@ -26,6 +26,9 @@ class Todo extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
+        this.setState({
+            book : ""
+        })
         let bookArray = {
             "book" : this.state.book
         }
