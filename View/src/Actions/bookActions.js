@@ -15,12 +15,22 @@ export const deleteBooks = (id) => {
         })
     }
 }
-export const addBooks = (books) => {
-    console.log(books)
-    return (dispatch , getState) => {
+export const addBooks = (books) => (dispatch) => {
+    fetch("/api/books/" , {
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(books)
+    })
+    .then((res) => {return res.json()})
+    .then((data) => 
         dispatch({
             type : "ADD_BOOKS",
-            books
+            books : data
         })
-    }
+    )
+    .catch(err => {
+        console.log(err)
+    })
 }

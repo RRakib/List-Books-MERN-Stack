@@ -11,7 +11,7 @@ class Todo extends Component {
         super(props);
         this.state = {
             book : "",
-            id : "",
+            _id : "",
         }
     }
 
@@ -27,8 +27,7 @@ class Todo extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let bookArray = {
-            id : this.state.id,
-            book : this.state.book
+            "book" : this.state.book
         }
         this.props.addBook(bookArray)
 
